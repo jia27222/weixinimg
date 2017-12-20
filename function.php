@@ -36,5 +36,23 @@
         header( "Content-type: image/{$imgtype}");
         echo file_get_contents($imgurl);;
     }
+
+    /**
+     * 显示其他防盗链图片
+     */
+    public function pic2(){
+        $imgurl = $_GET['url'];
+        $ext = strtolower(substr(strrchr($imgurl,'.'),1,3));
+        $types = array(
+            'gif'=>'image/gif',
+            'jpeg'=>'image/jpeg',
+            'jpg'=>'image/jpeg',
+            'jpe'=>'image/jpeg',
+            'png'=>'image/png',
+        );
+        $type = $types[$ext] ? $types[$ext] : 'image/jpeg';
+        header("Content-type: ".$type);
+        echo file_get_contents($imgurl);
+    }
     
     
