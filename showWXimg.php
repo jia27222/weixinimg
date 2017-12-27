@@ -28,13 +28,16 @@
      *微信图片地址样例
      *$imgurl = 'http://mmbiz.qpic.cn/mmbiz_jpg/mxaa4wWaSsLTJP7sc76y6wyu8AFPV1XfgM8IXHLiaZmZbtr3XpicE0dOGUek6lh0HaO3yGABNz5lL00bmGFd8plQ/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1'
      */
-    public function pic(){
+    public function pic(){ 
         $url =  $_SERVER["REQUEST_URI"]; 
         $imgurl = substr($url, 28);
-        $imgtype = $_GET['wx_fmt'];
         
-        header( "Content-type: image/{$imgtype}");
-        echo file_get_contents($imgurl);;
+        //获取图片扩展名
+        $imghttp = get_headers($imgurl,true);
+        $type = $imghttp['Content-Type'];
+        
+        header( "Content-type: $type");
+        echo file_get_contents($imgurl);
     }
 
     /**
