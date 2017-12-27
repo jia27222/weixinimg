@@ -8,8 +8,8 @@
     public function imgsrc($str){
         $APP_URL = C('APP_HTTPURL');//项目访问地址
         //处理微信图片无法正常显示问题
-        $msg = preg_replace("/src=\"https:\/\/mmbiz\./", " data-src=\"".$APP_URL."index.php/ArticleIndex/pic/https://mmbiz.", $str);
-        $msg = preg_replace("/src=\"http:\/\/mmbiz\./", " data-src=\"".$APP_URL."index.php/ArticleIndex/pic/http://mmbiz.", $msg);
+        $msg = preg_replace("/src=\"https:\/\/mmbiz\./", " data-src=\"".$APP_URL."index.php/ArticleIndex/pic?https://mmbiz.", $str);
+        $msg = preg_replace("/src=\"http:\/\/mmbiz\./", " data-src=\"".$APP_URL."index.php/ArticleIndex/pic?http://mmbiz.", $msg);
         $msg = preg_replace("/tp=webp\&/", "", $msg);
         
         //视频不加载
